@@ -1,0 +1,28 @@
+version: '3'
+services:
+  frontend:
+    image: chanduj/traveltrails_frontend:latest
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+
+
+  backend:
+    image: chanduj/traveltrails_backend:latest
+    ports:
+      - '4000:4000'
+    depends_on:
+      - mongo
+
+
+  mongo:
+    image: mongo:4.4.25
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+
+volumes:
+  mongo-data:
